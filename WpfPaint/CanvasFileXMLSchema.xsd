@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CanvasFileXMLSchema"
+    targetNamespace="http://tempuri.org/CanvasFileXMLSchema.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://tempuri.org/CanvasFileXMLSchema.xsd"
+    xmlns:mstns="http://tempuri.org/CanvasFileXMLSchema.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name ="File">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element name="Shape" minOccurs="1">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name ="Brush" minOccurs="1">
+                <xs:complexType>
+                  <xs:attribute name="Color1" use="required" type="xs:string"></xs:attribute>
+                  <xs:attribute name="Color2" use="optional" type="xs:string"></xs:attribute>
+                  <xs:attribute name="Color1pos" use="optional" type="xs:double"></xs:attribute>
+                  <xs:attribute name="Color2pos" use="optional" type="xs:double"></xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Points" minOccurs="1">
+                <xs:complexType>
+                  <xs:choice>
+                    <xs:element name="Point" minOccurs="2" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:attribute name="X" type="xs:double" use="required"></xs:attribute>
+                        <xs:attribute name="Y" type="xs:double" use="required"></xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:choice>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Type" type="mstns:ShapeType" use="required"></xs:attribute>
+            <xs:attribute name ="Stroke" type="xs:double" use="optional"></xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="ShapeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Rect" />
+      <xs:enumeration value="Line" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
